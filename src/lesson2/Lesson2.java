@@ -24,7 +24,7 @@ public class Lesson2 {
             for (int j = 0; j < arr2.length; j++) {
                 try {
                     arrInt[i][j] = Integer.parseInt(arr2[i][j]);
-                } catch (Exception e) {
+                } catch (NumberFormatException e) {
                     throw new MyArrayDataException("В ячейке " + i + "x" + j + " массива содержится символ вместо числа. Преобразование остановлено!");
                 }
             }
