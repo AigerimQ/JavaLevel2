@@ -29,7 +29,7 @@ public class Lesson2 {
                 }
             }
         }
-        System.out.println(sumArrayElements(arrInt));
+        System.out.println("Сумма элементов массива равна " + sumArrayElements(arrInt));
     }
 
     private static String[][] createArray() {
