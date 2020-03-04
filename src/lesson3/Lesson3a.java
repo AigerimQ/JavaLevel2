@@ -2,7 +2,7 @@ package lesson3;
 
 import java.util.*;
 
-public class Lesson3 {
+public class Lesson3a {
     public static void main(String[] args) {
         String[] fruitBoxArray = {"Apple", "Orange", "Kiwi", "Banana", "Grape", "Apple", "Mango", "Peach", "Pear", "Orange", "Banana", "Melon", "Kiwi", "Apple", "Watermelon", "Orange"};
 
@@ -20,4 +20,5 @@ public class Lesson3 {
             }
         System.out.println(fruitMap);
     }
+
 }
