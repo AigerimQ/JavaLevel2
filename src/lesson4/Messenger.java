@@ -9,26 +9,38 @@ public class Messenger extends JFrame {
     private JTextField customInputText;
     private JButton sendMessage;
     private JLabel label;
+    private JList<String> contactList;
+    private JLabel contacts;
+    private JLabel сorrespondence;
+    private String selectedContact = "Я";
+
 
     private Messenger() {
         DefaultListModel<String> listModel = new DefaultListModel<>();
         listItems.setModel(listModel);
-        listItems.addListSelectionListener(e -> {
-//                int firstIndex = e.getFirstIndex();
-//                String selectedValue = listModel.get(firstIndex);
-            String selectedValue = listItems.getSelectedValue();
-//            label.setText(selectedValue);
+        listItems.addListSelectionListener(e -> listItems.getSelectedValue());
 
-        });
+        DefaultListModel<String> listModel1 = new DefaultListModel<>();
+        listModel1.addElement("Андрей Чумаков");
+        listModel1.addElement("Ксения Новожилова");
+        listModel1.addElement("Максим Гребенюк");
+        listModel1.addElement("Евгений Иванов");
+        contactList.setModel(listModel1);
+
+        contactList.addListSelectionListener(e -> selectedContact = contactList.getSelectedValue());
 
         customInputText.addActionListener(event -> {
-            listModel.addElement(customInputText.getText());
+            listModel.addElement(selectedContact + ": " + customInputText.getText());
             customInputText.setText("");
+            contactList.clearSelection();
+            selectedContact = "Я";
         });
 
         sendMessage.addActionListener(event -> {
-            listModel.addElement(customInputText.getText());
+            listModel.addElement(selectedContact + ": " + customInputText.getText());
             customInputText.setText("");
+            contactList.clearSelection();
+            selectedContact = "Я";
         });
 
 
