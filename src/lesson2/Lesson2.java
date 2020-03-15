@@ -1,4 +1,3 @@
-
 package lesson2;
 
 import java.util.Random;
