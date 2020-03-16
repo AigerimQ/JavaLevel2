@@ -18,7 +18,7 @@ public class Lesson5 {
         long start;
 
         start = System.currentTimeMillis();
-        calculation(arr);
+        calculation(arr, 0);
         long duration = System.currentTimeMillis() - start;
         System.out.println("Длительность расчета одним потоком: " + duration);
 
@@ -38,8 +38,8 @@ public class Lesson5 {
         System.arraycopy(arr, 0, arr1, 0, half);
         System.arraycopy(arr, half, arr2, 0, half);
 //      Создание двух потоков для ускорения расчета
-        Thread thread1 = new Thread(() -> calculation(arr1), "T1");
-        Thread thread2 = new Thread(() -> calculation2(arr2), "T2");
+        Thread thread1 = new Thread(() -> calculation(arr1, 0), "T1");
+        Thread thread2 = new Thread(() -> calculation(arr2, half), "T2");
 //      Запуск потоков
         thread1.start();
         thread2.start();
@@ -55,16 +55,9 @@ public class Lesson5 {
         return arr;
     }
 
-    private static void calculation(float[] arr) {
+    private static void calculation(float[] arr, int n) {
         for (int i = 0; i < arr.length; i++) {
-            arr[i] = (float) (arr[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
-        }
-    }
-
-    private static void calculation2(float[] arr) {
-        int n = arr.length;
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = (float) ((arr[i]) * Math.sin(0.2f + (n + i) / 5) * Math.cos(0.2f + (n + i) / 5) * Math.cos(0.4f + (n + i) / 2));
+            arr[i] = (float) (arr[i] * Math.sin(0.2f + (n + i) / 5) * Math.cos(0.2f + (n + i) / 5) * Math.cos(0.4f + (n + i) / 2));
         }
     }
 
