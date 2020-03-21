@@ -3,7 +3,7 @@ package lesson6;
 import java.io.*;
 import java.net.Socket;
 
-public class EchoClient {
+public class Client {
 
     private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private static DataInputStream inputStream;
@@ -11,7 +11,7 @@ public class EchoClient {
 
 
     //  Метод EchoClient нужен для создания нового socket клиента и связывания его с сервером по ip-адресу и номеру порта.
-    private EchoClient(String server_addr, int server_port) throws IOException {
+    private Client(String server_addr, int server_port) throws IOException {
         Socket socket = new Socket(server_addr, server_port);
         inputStream = new DataInputStream(socket.getInputStream());
         outputStream = new DataOutputStream(socket.getOutputStream());
@@ -46,9 +46,9 @@ public class EchoClient {
     public static void main(String[] args) {
         try {
 //          Создаем новый клиент и связываем его с сервером по IP-адресу и номеру порта.
-            EchoClient echoClient = new EchoClient("localhost", 8188);
+            Client client = new Client("localhost", 8188);
 //          Создаем новый поток отдельно от основного для получения сообщений от сервера.
-            Thread inputThread = new Thread(echoClient::getMessage);
+            Thread inputThread = new Thread(client::getMessage);
             inputThread.start();
 //          Из основного потока отправляем сообщения пользователя на сервер.
             sendMessage(outputStream);

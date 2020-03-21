@@ -4,7 +4,7 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class EchoServer {
+public class Server {
     private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private static DataInputStream inputStream;
     private static DataOutputStream outputStream;
@@ -19,7 +19,7 @@ public class EchoServer {
             System.out.println("Клиент подключился");
             inputStream = new DataInputStream(clientSocket.getInputStream());
             outputStream = new DataOutputStream(clientSocket.getOutputStream());
-            Thread inputThread = new Thread(EchoServer::getMessage);
+            Thread inputThread = new Thread(Server::getMessage);
             inputThread.start();
             sendMessage(outputStream);
         } catch (IOException e) {
